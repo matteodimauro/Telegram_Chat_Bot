@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+gnome-terminal -x sh -c 'cd ./kafka; bash start_gnome'
+gnome-terminal -x sh -c 'cd ./logstash; bash start_gnome'
+gnome-terminal -x sh -c 'cd ./spark; bash start_gnome'
+gnome-terminal -x sh -c 'cd ./elasticsearch; bash start_gnome'
+gnome-terminal -x sh -c 'cd ./kibana; bash start_gnome'
+gnome-terminal -x sh -c 'cd ./bot_python; bash start_gnome'
+

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+docker stop ZooKeeper
+docker stop kafkaServer
+docker stop Logstash
+docker stop sparkProcessing
+docker stop sparkMLlib
+#docker stop sparkMergeData
+docker stop elasticSearch
+docker stop botPython

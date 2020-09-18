@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Build image
+docker build ./src/ --tag project:kibana
+
+# Stop
+docker stop kibana
+
+#  Remove previuos container 
+docker container rm kibana
+
+echo "Waiting for ElasticSearch to start Kibana..."
+
+while ! nc -z 10.0.100.51 9200; do   
+  printf '.'
+  sleep 1 
+done
+
+echo "ElasticSearch launched"
+
+#curl -H "Content-Type: application/json" -XPOST "http://localhost:9200/weather/_doc/0" -d "{}"
+
+gnome-terminal --title="Kibana" -x sh -c 'docker run -p 5601:5601 --ip 10.0.100.52 --network tap --name kibana project:kibana'
+
+echo "Waiting for Kibana to import settings..."
+
+while ! nc -z 10.0.100.52 5601; do   
+  printf '.'
+  sleep 1 
+done
+
+echo "Kibana launched"
+sleep 10
+#curl -X POST "localhost:5601/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@src/export.ndjson

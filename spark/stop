@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+docker stop sparkProcessing
+docker stop sparkMLlib
+#docker stop sparkMergeData

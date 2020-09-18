@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Start ZooKeeper
+gnome-terminal --title="ZooKeeper" -x sh -c 'cd ./src/components/ZooKeeper/; bash start_gnome'
+
+echo "Waiting for ZooKeeper to start Kafka..."
+
+while ! nc -z 10.0.100.22 2181; do   
+  printf '.'
+  sleep 1 
+done
+
+echo "ZooKeeper launched"
+
+# Start Server Kafka
+gnome-terminal --title="Server Kafka" -x sh -c 'cd ./src/components/Server/; bash start_gnome'

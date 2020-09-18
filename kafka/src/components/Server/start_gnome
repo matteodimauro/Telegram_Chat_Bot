@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Build image
+docker build ../../ --tag project:kafka
+
+# Stop
+docker stop kafkaServer
+
+# Remove previuos container 
+docker container rm kafkaServer
+
+docker run -e KAFKA_ACTION=start-kafka --network tap --ip 10.0.100.23  -p 9092:9092 --name kafkaServer -it project:kafka

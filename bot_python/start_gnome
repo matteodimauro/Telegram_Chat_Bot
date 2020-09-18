@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Build image
+docker build --tag project:python .
+
+# Stop previuos container
+docker stop botPython
+# Remove previuos container 
+docker container rm botPython
+
+
+
+gnome-terminal --title="Bot Python" -x sh -c 'docker run -e PYTHON_APP=bot_telegram.py --network tap --name botPython -it project:python  '
+
+

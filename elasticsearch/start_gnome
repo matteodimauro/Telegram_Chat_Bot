@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Build image
+docker build ./src/ --tag project:elasticSearch
+
+# Stop
+docker stop elasticSearch
+
+# Remove previuos container 
+docker container rm elasticSearch
+
+gnome-terminal --title="ElasticSearch" -x sh -c 'docker run -t -p 9200:9200 -p 9300:9300 --ip 10.0.100.51 --name elasticSearch --network tap -e "discovery.type=single-node" project:elasticSearch'

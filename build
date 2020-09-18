@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+docker network create --subnet=10.0.100.1/24 tap
+
+docker build elasticsearch/src/ --tag project:elasticSearch
+
+docker build kafka/src/ --tag project:zookeeper
+
+docker build kafka/src/ --tag project:kafka
+
+docker pull docker.elastic.co/logstash/logstash:7.7.0
+
+docker build kibana/src/ --tag project:kibana
+
+docker build bot_python/ --tag project:python
+
+docker build spark/src/ --tag project:spark
+
